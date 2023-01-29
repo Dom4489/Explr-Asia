@@ -4,10 +4,10 @@
 #
 
 ### **Key Features** :
-- Generated hotel recommendations based in your desired destination
+- Generated hotel recommendations based on your desired destination
 - Each hotel page will contain a summary and provide access to the hotel’s official website
-- Users are able to add certain hotels to lists
-- Multiple lists can be created to separate different locations
+- Users are able to add certain hotels to user made lists
+- Multiple lists can be created in order to differentiate between trips
 
 #
 
@@ -50,13 +50,13 @@ that hotel to their list where they can read a writeup about the hotel and acces
 #
 
 ### **User Stories**
-- As a user, I want to be able to enter a city
+- As a user, I want to be able to enter a city name
 - As a user, I want to be able to view each hotel listing
 - As a user, I want to be able to see generated results based on my desired destination
 - As a user, I want to be able to access the hotel’s official website through the corresponding hotel listing
-- As a user, I want to be able to access the hotel’s official website through the corresponding hotel listing
-- As a user I want to be able to create multiple lists
-- As a user I want to be able to name my lists
+- As a user, I want to be able to add a hotel listing to my current travelling list
+- As a user, I want to be able to create multiple lists
+- As a user, I want to be able to name my lists
 - As a user, I want to be able to view my lists
 - As a user, I want to be able to delete hotel listings from my lists
 - As a user, I want to be able to see how many hotel listings I have in my list
