@@ -1,10 +1,62 @@
-# My Personal Project
+# ExplrAsia
 
-## A subtitle
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+#
 
-An example of text with **bold** and *italic* fonts.  
+### **Key Features** :
+- Generated hotel recommendations based in your desired destination
+- Each hotel page will contain a summary and provide access to the hotel’s official website
+- Users are able to add certain hotels to lists
+- Multiple lists can be created to separate different locations
+
+#
+
+## My story
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Some of my earliest and fondest 
+memories as a toddler consisted of late night car adventures 
+and overnight stays in the suites of Guangzhou’s 
+most prolific hotels. This was the result of my family’s 
+heavy involvement in the hotel industry in the western 
+parts of China. Specifically, the sensation of a warm 
+and welcoming hotel lobby after a long day of work and 
+travels presented me with great peace and comfort. 
+As it was said by Diane von Furstenburg, 
+*“When you get into a hotel room, you lock the door, 
+and you know there is secrecy, there is a luxury, 
+there is fantasy, there is comfort, and there is 
+assurance”*. My ambition with this project is to share 
+the luxuries and comforts, that I had once felt, with 
+the touring individuals and families looking to capture 
+an essence of the beauty within some of Asia’s most 
+glorious destinations.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Balancing hotel hunting and planning the itinerary for 
+your special work-trip, vacation, or stay-cation may seem 
+like a daunting and overwhelming task. This application 
+is designed to ease and simplify the process of hotel 
+seeking for tourists and travellers looking to explore 
+the Asian continent. Specifically, users will be able to 
+state their desired destination and will promptly be 
+greeted with various researched and reviewed hotel 
+recommendations. In addition to this, consumers also 
+have the ability to sort their generated results based 
+on both price and location. Moreover, once a hotel has 
+caught the interest of an user, they will be able to add 
+that hotel to their list where they can read a writeup about the hotel and access the hotel’s official website.
+
+#
+
+### **User Stories**
+- As a user, I want to be able to enter a city
+- As a user, I want to be able to view each hotel listing
+- As a user, I want to be able to see generated results based on my desired destination
+- As a user, I want to be able to access the hotel’s official website through the corresponding hotel listing
+- As a user, I want to be able to access the hotel’s official website through the corresponding hotel listing
+- As a user I want to be able to create multiple lists
+- As a user I want to be able to name my lists
+- As a user, I want to be able to view my lists
+- As a user, I want to be able to delete hotel listings from my lists
+- As a user, I want to be able to see how many hotel listings I have in my list
