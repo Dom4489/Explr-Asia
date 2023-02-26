@@ -97,7 +97,7 @@ public class HotelList {
         return result;
     }
 
-    //EFFECTS: returns the total prices of all the hotels in the list per day
+    // EFFECTS: returns the total prices of all the hotels in the list per day
     public int getTotalHotelPrices() {
         int result = 0;
         for (int i = 0; i < hotelList.size(); i++) {
@@ -107,5 +107,20 @@ public class HotelList {
         }
         return result;
     }
+
+    // EFFECTS: returns a list of the locations of the hotels in the list
+    public List getHotelLocations() {
+        List<String> locations =  new ArrayList<>();
+        for (int i = 0; i < hotelList.size(); i++) {
+            Hotel obj = (Hotel) hotelList.get(i);
+            String hotelLocation = obj.getLocation();
+            locations.add(hotelLocation);
+        }
+        return locations;
+    }
 }
+
+
+
+
 

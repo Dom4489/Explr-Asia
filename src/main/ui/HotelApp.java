@@ -143,6 +143,7 @@ public class HotelApp {
     private void displayList() {
         System.out.println(hotelList.getListName() + ":");
         System.out.println(hotelList.getHotelListNames());
+        System.out.println("Locations: " + hotelList.getHotelLocations());
         System.out.println("Total price: " + hotelList.getTotalHotelPrices());
         System.out.println("Total hotels: " + hotelList.length());
         System.out.println("List full: " + hotelList.listFull() + ", " + "List empty: " + hotelList.listEmpty());
@@ -163,75 +164,76 @@ public class HotelApp {
     private void listDestinations() {
         System.out.println("\nEnter your desired location from the list of supported locations:");
         String location = input.next();
+        location = location.toLowerCase();
         displayHotels(location);
     }
 
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void displayHotels(String place) {
-        if (place.equals("Guangzhou")) {
+        if (place.equals("guangzhou")) {
             System.out.println("Enter the name of the hotel you wish to add");
             System.out.println(gz1.getName() + " Price: " + gz1.getPricePerNight() + " Location: " + gz1.getLocation());
             System.out.println(gz2.getName() + " Price: " + gz2.getPricePerNight() + " Location: " + gz2.getLocation());
             System.out.println(gz3.getName() + " Price: " + gz3.getPricePerNight() + " Location: " + gz3.getLocation());
             String hotelToAdd = input.next();
             doAddGZ(hotelToAdd);
-        } else if (place.equals("Beijing")) {
+        } else if (place.equals("beijing")) {
             System.out.println("Enter the name of the hotel you wish to add");
             System.out.println(bj1.getName() + " Price: " + bj1.getPricePerNight() + " Location: " + bj1.getLocation());
             System.out.println(bj2.getName() + " Price: " + bj2.getPricePerNight() + " Location: " + bj2.getLocation());
             System.out.println(bj3.getName() + " Price: " + bj3.getPricePerNight() + " Location: " + bj3.getLocation());
             String hotelToAdd = input.next();
             doAddBJ(hotelToAdd);
-        } else if (place.equals("Shanghai")) {
+        } else if (place.equals("shanghai")) {
             System.out.println("Enter the name of the hotel you wish to add");
             System.out.println(sh1.getName() + " Price: " + sh1.getPricePerNight() + " Location: " + sh1.getLocation());
             System.out.println(sh2.getName() + " Price: " + sh2.getPricePerNight() + " Location: " + sh2.getLocation());
             System.out.println(sh3.getName() + " Price: " + sh3.getPricePerNight() + " Location: " + sh3.getLocation());
             String hotelToAdd = input.next();
             doAddSH(hotelToAdd);
-        } else if (place.equals("Tianjin")) {
+        } else if (place.equals("tianjin")) {
             System.out.println("Enter the name of the hotel you wish to add");
             System.out.println(tj1.getName() + " Price: " + tj1.getPricePerNight() + " Location: " + tj1.getLocation());
             System.out.println(tj2.getName() + " Price: " + tj2.getPricePerNight() + " Location: " + tj2.getLocation());
             System.out.println(tj3.getName() + " Price: " + tj3.getPricePerNight() + " Location: " + tj3.getLocation());
             String hotelToAdd = input.next();
             doAddTJ(hotelToAdd);
-        } else if (place.equals("Shenzhen")) {
+        } else if (place.equals("shenzhen")) {
             System.out.println("Enter the name of the hotel you wish to add");
             System.out.println(sz1.getName() + " Price: " + sz1.getPricePerNight() + " Location: " + sz1.getLocation());
             System.out.println(sz2.getName() + " Price: " + sz2.getPricePerNight() + " Location: " + sz2.getLocation());
             System.out.println(sz3.getName() + " Price: " + sz3.getPricePerNight() + " Location: " + sz3.getLocation());
             String hotelToAdd = input.next();
             doAddSZ(hotelToAdd);
-        } else if (place.equals("Chengdu")) {
+        } else if (place.equals("chengdu")) {
             System.out.println("Enter the name of the hotel you wish to add");
             System.out.println(cd1.getName() + " Price: " + cd1.getPricePerNight() + " Location: " + cd1.getLocation());
             System.out.println(cd2.getName() + " Price: " + cd2.getPricePerNight() + " Location: " + cd2.getLocation());
             System.out.println(cd3.getName() + " Price: " + cd3.getPricePerNight() + " Location: " + cd3.getLocation());
             String hotelToAdd = input.next();
             doAddCD(hotelToAdd);
-        } else if (place.equals("Chongqing")) {
+        } else if (place.equals("chongqing")) {
             System.out.println("Enter the name of the hotel you wish to add");
             System.out.println(cq1.getName() + " Price: " + cq1.getPricePerNight() + " Location: " + cq1.getLocation());
             System.out.println(cq2.getName() + " Price: " + cq2.getPricePerNight() + " Location: " + cq2.getLocation());
             System.out.println(cq3.getName() + " Price: " + cq3.getPricePerNight() + " Location: " + cq3.getLocation());
             String hotelToAdd = input.next();
             doAddCQ(hotelToAdd);
-        } else if (place.equals("Dongguan")) {
+        } else if (place.equals("dongguan")) {
             System.out.println("Enter the name of the hotel you wish to add");
             System.out.println(dg1.getName() + " Price: " + dg1.getPricePerNight() + " Location: " + dg1.getLocation());
             System.out.println(dg2.getName() + " Price: " + dg2.getPricePerNight() + " Location: " + dg2.getLocation());
             System.out.println(dg3.getName() + " Price: " + dg3.getPricePerNight() + " Location: " + dg3.getLocation());
             String hotelToAdd = input.next();
             doAddDG(hotelToAdd);
-        } else if (place.equals("Shenyang")) {
+        } else if (place.equals("shenyang")) {
             System.out.println("Enter the name of the hotel you wish to add");
             System.out.println(sy1.getName() + " Price: " + sy1.getPricePerNight() + " Location: " + sy1.getLocation());
             System.out.println(sy2.getName() + " Price: " + sy2.getPricePerNight() + " Location: " + sy2.getLocation());
             System.out.println(sy3.getName() + " Price: " + sy3.getPricePerNight() + " Location: " + sy3.getLocation());
             String hotelToAdd = input.next();
             doAddSY(hotelToAdd);
-        } else if (place.equals("Wuhan")) {
+        } else if (place.equals("wuhan")) {
             System.out.println("Enter the name of the hotel you wish to add");
             System.out.println(wh1.getName() + " Price: " + wh1.getPricePerNight() + " Location: " + wh1.getLocation());
             System.out.println(wh2.getName() + " Price: " + wh2.getPricePerNight() + " Location: " + wh2.getLocation());

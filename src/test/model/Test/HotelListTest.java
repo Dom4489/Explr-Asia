@@ -30,7 +30,7 @@ public class HotelListTest {
     public void setup() {
         hl1 = new HotelList("TravelList1");
         hl2 = new HotelList("China");
-        h1 = new Hotel("RoseWood", 99, "Bejing");
+        h1 = new Hotel("RoseWood", 99, "Beijing");
         h2 = new Hotel("Sheraton", 102, "Guangzhou");
         h3 = new Hotel("yes", 152, "no");
         h4 = new Hotel("in", 121, "out");
@@ -156,6 +156,22 @@ public class HotelListTest {
         assertEquals(201, hl1.getTotalHotelPrices());
         hl1.removeHotelFromList("RoseWood");
         assertEquals(102, hl1.getTotalHotelPrices());
+    }
+
+    @Test
+    public void testGetHotelLoations() {
+        assertEquals(0, hl1.getHotelLocations().size());
+        hl1.addHotelToList(h1);
+        hl1.addHotelToList(h2);
+        assertEquals(2, hl1.getHotelLocations().size());
+        List<String> test = new ArrayList<>();
+        test.add("Beijing");
+        test.add("Guangzhou");
+        assertEquals(test, hl1.getHotelLocations());
+        hl1.removeHotelFromList("Sheraton");
+        test.remove(1);
+        assertEquals(1, hl1.getHotelLocations().size());
+        assertEquals(test, hl1.getHotelLocations());
     }
 
 
