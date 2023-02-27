@@ -102,7 +102,6 @@ public class HotelApp {
 
     // MODIFIES: this
     // EFFECTS: initializes each field
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void init() {
         this.hotelList = new HotelList(DEFAULT_LIST_NAME);
         this.input = new Scanner(System.in);
