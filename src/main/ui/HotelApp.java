@@ -53,6 +53,13 @@ public class HotelApp {
         boolean keepGoing = true;
         String command = null;
         this.init();
+        this.initBJ();
+        this.initSH();
+        this.initTJ();
+        this.initCD();
+        this.initCQ();
+        this.initSZ();
+        this.initRest();
 
         while (keepGoing) {
             this.displayMenu();
@@ -103,24 +110,45 @@ public class HotelApp {
         this.gz1 = new Hotel("Langham", 280, "Haizhu");
         this.gz2 = new Hotel("Ritz-carlton", 345, "Tian He");
         this.gz3 = new Hotel("Four Seasons", 378, "Tian He");
+    }
+
+    private void initBJ() {
         this.bj1 = new Hotel("Ascott Raffles", 251, "Dongzhimen");
         this.bj2 = new Hotel("Grand Hyatt", 334, "Dongcheng");
         this.bj3 = new Hotel("Rosewood", 445, "Chaoyangmen Outer St");
+    }
+
+    private void initSH() {
         this.sh1 = new Hotel("Shangri-la", 340, "Pu-dong");
         this.sh2 = new Hotel("Ritz-carlton", 368, "Pu-dong");
         this.sh3 = new Hotel("Grand Kempinski", 176, "Pu-dong");
+    }
+
+    private void initTJ() {
         this.tj1 = new Hotel("Ritz-carlton", 225, "Dagubei");
         this.tj2 = new Hotel("Mariott", 100, "Tian Jin Zhi Yan");
         this.tj3 = new Hotel("Crowne Plaza", 110, "Dongli");
+    }
+
+    private void initSZ() {
         this.sz1 = new Hotel("Langham", 203, "Shenan");
         this.sz2 = new Hotel("Hilton", 183, "Fu Tian");
         this.sz3 = new Hotel("Hilton (Sea World)", 183, "Shekou");
+    }
+
+    private void initCD() {
         this.cd1 = new Hotel("Mariott", 134, "Chenghua");
         this.cd2 = new Hotel("Hilton", 129, "Ju Wei Jiu");
         this.cd3 = new Hotel("Kempinski", 184, "Wangjiang Pavilion Park");
+    }
+
+    private void initCQ() {
         this.cq1 = new Hotel("Niccolo", 216, "Guojin Centre");
         this.cq2 = new Hotel("Crowne Plaza", 116, "Long Hua");
         this.cq3 = new Hotel("Banyan", 358, "Beibei");
+    }
+
+    private void initRest() {
         this.dg1 = new Hotel("Sheraton", 99, "Fukang");
         this.dg2 = new Hotel("Mission Hills", 124, "Lin Pin");
         this.dg3 = new Hotel("Pullman", 126, "Huangqi Square");
