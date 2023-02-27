@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// This class includes the test suites for the class HotelList
 public class HotelListTest {
     private HotelList hl1;
     private HotelList hl2;

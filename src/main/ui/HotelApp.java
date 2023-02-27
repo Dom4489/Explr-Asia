@@ -5,6 +5,7 @@ import model.HotelList;
 
 import java.util.Scanner;
 
+// This class represents the user interface for the application
 public class HotelApp {
 
     private static final String DEFAULT_LIST_NAME = "Hotel list";
@@ -41,10 +42,13 @@ public class HotelApp {
     private Hotel wh2;
     private Hotel wh3;
 
+    // EFFECTS: constructs runHotel
     public HotelApp() {
         runHotel();
     }
 
+    // MODIFIES: this
+    // EFFECTS: runs the hotel application
     private void runHotel() {
         boolean keepGoing = true;
         String command = null;
@@ -64,6 +68,8 @@ public class HotelApp {
         System.out.println("\nSee you next time!");
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes the first command given by the user
     private void processCommand(String command) {
         if (command.equals("hotels")) {
             this.listDestinations();
@@ -75,6 +81,8 @@ public class HotelApp {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes the user's input once hotel list has been chosen from the display menu
     private void prcoessListCommand(String option) {
         if (option.equals("view list properties")) {
             this.displayList();
@@ -85,6 +93,8 @@ public class HotelApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes each field
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void init() {
         this.hotelList = new HotelList(DEFAULT_LIST_NAME);
@@ -122,7 +132,7 @@ public class HotelApp {
         this.wh3 = new Hotel("Fairmont", 268, "Jianghan");
     }
 
-
+    // EFFECTS: displays the first set of options presented to the user
     private void displayMenu() {
         System.out.println("\nPlease select from the following:");
         System.out.println("Hotels");
@@ -130,6 +140,8 @@ public class HotelApp {
         System.out.println("quit");
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays the options once hotel list has been selected from the display menu
     private void listOptions() {
         System.out.println("Enter the action you wish to complete:");
         System.out.println("view list properties");
@@ -140,6 +152,7 @@ public class HotelApp {
         prcoessListCommand(option);
     }
 
+    // EFFECTS: Displays the contents of a user's hotel list
     private void displayList() {
         System.out.println(hotelList.getListName() + ":");
         System.out.println(hotelList.getHotelListNames());
@@ -149,18 +162,24 @@ public class HotelApp {
         System.out.println("List full: " + hotelList.listFull() + ", " + "List empty: " + hotelList.listEmpty());
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes the first hotel in the list with the name given by the user
     private void doRemove() {
         System.out.println("Enter the name of the hotel you wish to remove");
         String remove = input.next();
         hotelList.removeHotelFromList(remove);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the name of the user's hotel list
     private void doSetListName() {
         System.out.println("Enter the name in which you want to name your list");
         String listName = input.next();
         hotelList.setListName(listName);
     }
 
+    // MODIFIES: this
+    // EFFECTS: prompts the user to enter a supported location
     private void listDestinations() {
         System.out.println("\nEnter your desired location from the list of supported locations:");
         String location = input.next();
@@ -168,6 +187,8 @@ public class HotelApp {
         displayHotels(location);
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes the user's input from the listDestinations method and displays a list of available hotels
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void displayHotels(String place) {
         if (place.equals("guangzhou")) {
@@ -245,6 +266,8 @@ public class HotelApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddGZ(String hotelToAdd) {
         if (hotelToAdd.equals("Langham")) {
             hotelList.addHotelToList(gz1);
@@ -257,6 +280,8 @@ public class HotelApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddBJ(String hotelToAdd) {
         if (hotelToAdd.equals("Ascott Raffles")) {
             hotelList.addHotelToList(bj1);
@@ -269,6 +294,8 @@ public class HotelApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddSH(String hotelToAdd) {
         if (hotelToAdd.equals("Shangri-la")) {
             hotelList.addHotelToList(sh1);
@@ -281,6 +308,8 @@ public class HotelApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddTJ(String hotelToAdd) {
         if (hotelToAdd.equals("Ritz-carlton")) {
             hotelList.addHotelToList(tj1);
@@ -293,6 +322,8 @@ public class HotelApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddSZ(String hotelToAdd) {
         if (hotelToAdd.equals("Langham")) {
             hotelList.addHotelToList(sz1);
@@ -305,6 +336,8 @@ public class HotelApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddCD(String hotelToAdd) {
         if (hotelToAdd.equals("Mariott")) {
             hotelList.addHotelToList(cd1);
@@ -317,6 +350,8 @@ public class HotelApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddCQ(String hotelToAdd) {
         if (hotelToAdd.equals("Niccolo")) {
             hotelList.addHotelToList(cq1);
@@ -329,6 +364,8 @@ public class HotelApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddDG(String hotelToAdd) {
         if (hotelToAdd.equals("Sheraton")) {
             hotelList.addHotelToList(dg1);
@@ -341,6 +378,8 @@ public class HotelApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddSY(String hotelToAdd) {
         if (hotelToAdd.equals("Hilton")) {
             hotelList.addHotelToList(sy1);
@@ -353,6 +392,8 @@ public class HotelApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddWH(String hotelToAdd) {
         if (hotelToAdd.equals("Grand Plaza")) {
             hotelList.addHotelToList(wh1);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+// This class represents the user's hotel list
 public class HotelList {
     private LinkedList hotelList;
     public static final int MAX_SIZE = 10; // Maximum size of the list
@@ -11,6 +12,8 @@ public class HotelList {
     public static final String MAX_SIZE_REACHED = "You have added the maximum amount of hotels one list can hold";
     private String listName; // Name of your list
 
+    // REQUIRES: A name that is a valid string of english letters
+    // EFFECTS: constructs a hotel list
     public HotelList(String name) {
         hotelList = new LinkedList<Hotel>();
         this.listName = name;
@@ -53,7 +56,7 @@ public class HotelList {
         return listName;
     }
 
-    // MODIFIES: this
+    //MODIFIES: this
     //EFFECTS: changes the name of the list
     public String setListName(String newName) {
         this.listName = newName;

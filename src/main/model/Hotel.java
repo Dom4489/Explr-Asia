@@ -1,5 +1,6 @@
 package model;
 
+// This class represents each hotel listing
 public class Hotel {
 
     private String name; // Name of the hotel
