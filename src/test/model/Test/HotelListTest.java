@@ -2,6 +2,7 @@ package model.Test;
 
 import model.Hotel;
 import model.HotelList;
+import model.Wallet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -2,6 +2,8 @@ package ui;
 
 import model.Hotel;
 import model.HotelList;
+import model.RedPocket;
+import model.Wallet;
 
 import java.util.Scanner;
 
@@ -41,6 +43,8 @@ public class HotelApp {
     private Hotel wh1;
     private Hotel wh2;
     private Hotel wh3;
+    private Wallet w1;
+    private RedPocket rp1;
 
     // EFFECTS: constructs runHotel
     public HotelApp() {
@@ -82,21 +86,78 @@ public class HotelApp {
             this.listDestinations();
         } else if (command.equals("hotel list")) {
             this.listOptions();
+        } else if (command.equals("wallet")) {
+            this.walletOptions();
         } else {
             System.out.println("Selection not valid, please try again at a later time");
         }
 
     }
 
+    private void walletOptions() {
+        System.out.println("Enter the action you wish to complete:");
+        System.out.println("View funds");
+        System.out.println("Deposit funds");
+        System.out.println("Test my luck");
+        String option = input.next();
+        option = option.toLowerCase();
+        processWalletCommand(option);
+    }
+
+    private void processWalletCommand(String option) {
+        if (option.equals("view funds")) {
+            System.out.println("Your wallet currently contains: " + w1.getAmount() + " CAD");
+        } else if (option.equals("deposit funds")) {
+            this.depositFunds();
+        } else if (option.equals("test my luck")) {
+            this.doRedPocket();
+        } else {
+            System.out.println("Selection not valid, please try again at a later time");
+        }
+    }
+
+    private void depositFunds() {
+        System.out.println("Enter the amount you would like to deposit:");
+        int amount = input.nextInt();
+        w1.addAmount(amount);
+        System.out.println("Success");
+    }
+
+    private void doRedPocket() {
+        System.out.println("You are about to pay for a red pocket,");
+        System.out.println("A red pocket costs 50 CAD,");
+        System.out.println("In return you will receive a random amount or funds from 0 - 350 CAD,");
+        System.out.println("Enter: either \"Yes\" to continue or \"No\" to return");
+        String selection = input.next();
+        selection = selection.toLowerCase();
+        gamble(selection);
+    }
+
+    private void gamble(String selection) {
+        if (selection.equals("yes") && w1.getAmount() >= 50) {
+            w1.subAmount(50);
+            rp1 = new RedPocket(1);
+            int amount = rp1.getAmount();
+            w1.addAmount(amount);
+            System.out.println("Previous amount: " + (w1.getAmount() - amount + 50) + " CAD");
+            System.out.println("Congrats! You received: " + amount + " CAD");
+            System.out.println("Current amount: " + w1.getAmount() + " CAD");
+        } else {
+            System.out.println("Red pocket not purchased");
+        }
+    }
+
     // MODIFIES: this
     // EFFECTS: processes the user's input once hotel list has been chosen from the display menu
-    private void prcoessListCommand(String option) {
+    private void processListCommand(String option) {
         if (option.equals("view list properties")) {
             this.displayList();
         } else if (option.equals("remove hotel from list")) {
             this.doRemove();
         } else if (option.equals("set list name")) {
             this.doSetListName();
+        } else {
+            System.out.println("Selection not valid, please try again at a later time");
         }
     }
 
@@ -106,6 +167,7 @@ public class HotelApp {
         this.hotelList = new HotelList(DEFAULT_LIST_NAME);
         this.input = new Scanner(System.in);
         this.input.useDelimiter("\n");
+        this.w1 = new Wallet(150);
         this.gz1 = new Hotel("Langham", 280, "Haizhu");
         this.gz2 = new Hotel("Ritz-carlton", 345, "Tian He");
         this.gz3 = new Hotel("Four Seasons", 378, "Tian He");
@@ -164,6 +226,7 @@ public class HotelApp {
         System.out.println("\nPlease select from the following:");
         System.out.println("Hotels");
         System.out.println("Hotel list");
+        System.out.println("Wallet");
         System.out.println("quit");
     }
 
@@ -176,7 +239,7 @@ public class HotelApp {
         System.out.println("set list name");
         String option = input.next();
         option = option.toLowerCase();
-        prcoessListCommand(option);
+        processListCommand(option);
     }
 
     // EFFECTS: Displays the contents of a user's hotel list
@@ -297,11 +360,26 @@ public class HotelApp {
     // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddGZ(String hotelToAdd) {
         if (hotelToAdd.equals("Langham")) {
-            hotelList.addHotelToList(gz1);
+            if (w1.getAmount() >= gz1.getPricePerNight()) {
+                hotelList.addHotelToList(gz1);
+                w1.subAmount(gz1.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Ritz-carlton")) {
-            hotelList.addHotelToList(gz2);
+            if (w1.getAmount() >= gz2.getPricePerNight()) {
+                hotelList.addHotelToList(gz2);
+                w1.subAmount(gz2.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Four Seasons")) {
-            hotelList.addHotelToList(gz3);
+            if (w1.getAmount() >= gz3.getPricePerNight()) {
+                hotelList.addHotelToList(gz3);
+                w1.subAmount(gz3.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else {
             System.out.println("Selection not valid please try again");
         }
@@ -311,11 +389,26 @@ public class HotelApp {
     // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddBJ(String hotelToAdd) {
         if (hotelToAdd.equals("Ascott Raffles")) {
-            hotelList.addHotelToList(bj1);
+            if (w1.getAmount() >= bj1.getPricePerNight()) {
+                hotelList.addHotelToList(bj1);
+                w1.subAmount(bj1.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Grand Hyatt")) {
-            hotelList.addHotelToList(bj2);
+            if (w1.getAmount() >= bj2.getPricePerNight()) {
+                hotelList.addHotelToList(bj2);
+                w1.subAmount(bj2.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Rosewood")) {
-            hotelList.addHotelToList(bj3);
+            if (w1.getAmount() >= bj3.getPricePerNight()) {
+                hotelList.addHotelToList(bj3);
+                w1.subAmount(bj3.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else {
             System.out.println("Selection not valid please try again");
         }
@@ -325,11 +418,26 @@ public class HotelApp {
     // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddSH(String hotelToAdd) {
         if (hotelToAdd.equals("Shangri-la")) {
-            hotelList.addHotelToList(sh1);
+            if (w1.getAmount() >= sh1.getPricePerNight()) {
+                hotelList.addHotelToList(sh1);
+                w1.subAmount(sh1.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Ritz-carlton")) {
-            hotelList.addHotelToList(sh2);
+            if (w1.getAmount() >= sh2.getPricePerNight()) {
+                hotelList.addHotelToList(sh2);
+                w1.subAmount(sh2.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Grand Kempinski")) {
-            hotelList.addHotelToList(sh3);
+            if (w1.getAmount() >= sh3.getPricePerNight()) {
+                hotelList.addHotelToList(sh3);
+                w1.subAmount(sh3.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else {
             System.out.println("Selection not valid please try again");
         }
@@ -339,11 +447,26 @@ public class HotelApp {
     // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddTJ(String hotelToAdd) {
         if (hotelToAdd.equals("Ritz-carlton")) {
-            hotelList.addHotelToList(tj1);
+            if (w1.getAmount() >= tj1.getPricePerNight()) {
+                hotelList.addHotelToList(tj1);
+                w1.subAmount(tj1.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Mariott")) {
-            hotelList.addHotelToList(tj2);
+            if (w1.getAmount() >= tj2.getPricePerNight()) {
+                hotelList.addHotelToList(tj2);
+                w1.subAmount(tj2.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Crowne Plaza")) {
-            hotelList.addHotelToList(tj3);
+            if (w1.getAmount() >= tj3.getPricePerNight()) {
+                hotelList.addHotelToList(tj3);
+                w1.subAmount(tj3.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else {
             System.out.println("Selection not valid please try again");
         }
@@ -353,11 +476,26 @@ public class HotelApp {
     // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddSZ(String hotelToAdd) {
         if (hotelToAdd.equals("Langham")) {
-            hotelList.addHotelToList(sz1);
+            if (w1.getAmount() >= sz1.getPricePerNight()) {
+                hotelList.addHotelToList(sz1);
+                w1.subAmount(sz1.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Hilton")) {
-            hotelList.addHotelToList(sz2);
+            if (w1.getAmount() >= sz2.getPricePerNight()) {
+                hotelList.addHotelToList(sz2);
+                w1.subAmount(sz2.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Hilton (Sea World)")) {
-            hotelList.addHotelToList(sz3);
+            if (w1.getAmount() >= sz3.getPricePerNight()) {
+                hotelList.addHotelToList(sz3);
+                w1.subAmount(sz3.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else {
             System.out.println("Selection not valid please try again");
         }
@@ -367,11 +505,26 @@ public class HotelApp {
     // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddCD(String hotelToAdd) {
         if (hotelToAdd.equals("Mariott")) {
-            hotelList.addHotelToList(cd1);
+            if (w1.getAmount() >= cd1.getPricePerNight()) {
+                hotelList.addHotelToList(cd1);
+                w1.subAmount(cd1.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Hilton")) {
-            hotelList.addHotelToList(cd2);
+            if (w1.getAmount() >= cd2.getPricePerNight()) {
+                hotelList.addHotelToList(cd2);
+                w1.subAmount(cd2.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Kempinski")) {
-            hotelList.addHotelToList(cd3);
+            if (w1.getAmount() >= cd3.getPricePerNight()) {
+                hotelList.addHotelToList(cd3);
+                w1.subAmount(cd3.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else {
             System.out.println("Selection not valid please try again");
         }
@@ -381,11 +534,26 @@ public class HotelApp {
     // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddCQ(String hotelToAdd) {
         if (hotelToAdd.equals("Niccolo")) {
-            hotelList.addHotelToList(cq1);
+            if (w1.getAmount() >= cq1.getPricePerNight()) {
+                hotelList.addHotelToList(cq1);
+                w1.subAmount(cq1.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Crowne Plaza")) {
-            hotelList.addHotelToList(cq2);
+            if (w1.getAmount() >= cq2.getPricePerNight()) {
+                hotelList.addHotelToList(cq2);
+                w1.subAmount(cq2.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Banyan")) {
-            hotelList.addHotelToList(cq3);
+            if (w1.getAmount() >= cq3.getPricePerNight()) {
+                hotelList.addHotelToList(cq3);
+                w1.subAmount(cq3.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else {
             System.out.println("Selection not valid please try again");
         }
@@ -395,11 +563,26 @@ public class HotelApp {
     // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddDG(String hotelToAdd) {
         if (hotelToAdd.equals("Sheraton")) {
-            hotelList.addHotelToList(dg1);
+            if (w1.getAmount() >= dg1.getPricePerNight()) {
+                hotelList.addHotelToList(dg1);
+                w1.subAmount(dg1.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Mission Hills")) {
-            hotelList.addHotelToList(dg2);
+            if (w1.getAmount() >= dg2.getPricePerNight()) {
+                hotelList.addHotelToList(dg2);
+                w1.subAmount(dg2.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Pullman")) {
-            hotelList.addHotelToList(dg3);
+            if (w1.getAmount() >= dg3.getPricePerNight()) {
+                hotelList.addHotelToList(dg3);
+                w1.subAmount(dg3.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else {
             System.out.println("Selection not valid please try again");
         }
@@ -409,11 +592,26 @@ public class HotelApp {
     // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddSY(String hotelToAdd) {
         if (hotelToAdd.equals("Hilton")) {
-            hotelList.addHotelToList(sy1);
+            if (w1.getAmount() >= sy1.getPricePerNight()) {
+                hotelList.addHotelToList(sy1);
+                w1.subAmount(sy1.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Grand Hyatt")) {
-            hotelList.addHotelToList(sy2);
+            if (w1.getAmount() >= sy2.getPricePerNight()) {
+                hotelList.addHotelToList(sy2);
+                w1.subAmount(sy2.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Conrad")) {
-            hotelList.addHotelToList(sy3);
+            if (w1.getAmount() >= sy3.getPricePerNight()) {
+                hotelList.addHotelToList(sy3);
+                w1.subAmount(sy3.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else {
             System.out.println("Selection not valid please try again");
         }
@@ -423,11 +621,26 @@ public class HotelApp {
     // EFFECTS: adds the selected hotel to the user's hotel list
     private void doAddWH(String hotelToAdd) {
         if (hotelToAdd.equals("Grand Plaza")) {
-            hotelList.addHotelToList(wh1);
+            if (w1.getAmount() >= wh1.getPricePerNight()) {
+                hotelList.addHotelToList(wh1);
+                w1.subAmount(wh1.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Intercontinental Wuhan")) {
-            hotelList.addHotelToList(wh2);
+            if (w1.getAmount() >= wh2.getPricePerNight()) {
+                hotelList.addHotelToList(wh2);
+                w1.subAmount(wh2.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else if (hotelToAdd.equals("Fairmont")) {
-            hotelList.addHotelToList(wh3);
+            if (w1.getAmount() >= wh3.getPricePerNight()) {
+                hotelList.addHotelToList(wh3);
+                w1.subAmount(wh3.getPricePerNight());
+            } else {
+                System.out.println("Insufficient funds please try again later");
+            }
         } else {
             System.out.println("Selection not valid please try again");
         }

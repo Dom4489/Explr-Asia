@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import model.Wallet;
 
 // This class represents the user's hotel list
 public class HotelList {

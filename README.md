@@ -64,3 +64,8 @@ that hotel to their list where they can read a writeup about the hotel and acces
 - As a user, I want to be able to delete hotel listings from my list
 - As a user, I want to be able to see how many hotel listings I have in my list
 - As a user, I want to be able to view the locations of the hotels in my list
+- As a user, I want to be reminded that I am able to have the option to 
+save my hotel list to a file when exiting the program
+- As a user, I want to be given the option to load my hotel list
+- As a user, I want my wallet to be auto-saved to a file
+- As a user, I want my wallet to be auto-loaded when I start the program after quitting
