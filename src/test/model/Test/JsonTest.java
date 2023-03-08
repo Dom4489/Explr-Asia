@@ -1,4 +1,4 @@
-package persistence;
+package model.Test;
 
 import model.Hotel;
 

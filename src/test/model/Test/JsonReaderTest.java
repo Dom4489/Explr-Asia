@@ -1,18 +1,21 @@
-package persistence;
-
+package model.Test;
 
 import model.Hotel;
 import model.HotelList;
-
-import org.junit.Test;
+import model.Wallet;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import persistence.JsonReader;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class JsonReaderTest extends JsonTest {
+
     @Test
     public void testReaderNonExistentFile() {
         JsonReader reader = new JsonReader("./data/noSuchFile.json");

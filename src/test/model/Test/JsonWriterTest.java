@@ -1,13 +1,18 @@
-package persistence;
+package model.Test;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
-import java.io.IOException;
-import java.util.List;
 import model.Hotel;
 import model.HotelList;
-import org.junit.Test;
+import model.Wallet;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JsonWriterTest extends JsonTest {
 
