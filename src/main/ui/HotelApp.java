@@ -14,10 +14,16 @@ import java.util.List;
 import java.util.Scanner;
 
 // This class represents the user interface for the application
+// Citation:
+// Description: java code on user interface
+// Author: fgrund
+// Date accessed: Feb 24, 2023
+// URL: https://github.students.cs.ubc.ca/CPSC210/TellerApp/blob/main/src/main/ca/ubc/cpsc210/bank/ui/TellerApp.java
 public class HotelApp {
 
     private static final String DEFAULT_LIST_NAME = "Hotel list";
     private static final String JSON_LOCATION = "./data/hotellist.json";
+    private static final String JSON_LOCATION_WALLET = "./data/wallet.json";
     private HotelList hotelList;
     private Scanner input;
     private Hotel gz1;
@@ -79,6 +85,7 @@ public class HotelApp {
             command = this.input.next();
             command = command.toLowerCase();
             if (command.equals("quit")) {
+                this.walletSave();
                 askForSave();
                 keepGoing = false;
             } else {
@@ -89,6 +96,9 @@ public class HotelApp {
         System.out.println("\nSee you next time!");
     }
 
+    // MODIFIES: this
+    // EFFECTS: after entering the quit command, asks the user if they want to save their hotel list and saves if yes
+    // is selected
     private void askForSave() {
         System.out.println("You are about to exit the application, would you like to save your current list?");
         System.out.println("Enter \"y\" to save or any other key to exit: ");
@@ -119,7 +129,10 @@ public class HotelApp {
     }
 
 
+    // MODIFIES: this
+    // EFFECTS: presents the interactive functions with the wallet available to the user and takes user input
     private void walletOptions() {
+        this.loadWallet();
         System.out.println("Enter the action you wish to complete:");
         System.out.println("View funds");
         System.out.println("Deposit funds");
@@ -129,6 +142,8 @@ public class HotelApp {
         processWalletCommand(option);
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes the user's wanted command with the wallet
     private void processWalletCommand(String option) {
         if (option.equals("view funds")) {
             System.out.println("Your wallet currently contains: " + w1.getAmount() + " CAD");
@@ -141,6 +156,9 @@ public class HotelApp {
         }
     }
 
+    // REQUIRES: inputted amount has to be a valid integer
+    // MODIFIES: this
+    // EFFECTS: adds the inputted amount to the user's wallet
     private void depositFunds() {
         System.out.println("Enter the amount you would like to deposit:");
         int amount = input.nextInt();
@@ -148,6 +166,8 @@ public class HotelApp {
         System.out.println("Success");
     }
 
+    // MODIFIES: this
+    // EFFECTS: prompts user to buy a red pocket
     private void doRedPocket() {
         System.out.println("You are about to pay for a red pocket,");
         System.out.println("A red pocket costs 50 CAD,");
@@ -158,6 +178,8 @@ public class HotelApp {
         gamble(selection);
     }
 
+    // MODIFIES: this
+    // EFFECTS: deducts 50 CAD from wallet and adds a random amount between 0 - 300 CAD
     private void gamble(String selection) {
         if (selection.equals("yes") && w1.getAmount() >= 50) {
             w1.subAmount(50);
@@ -198,44 +220,59 @@ public class HotelApp {
         this.gz3 = new Hotel("Four Seasons", 378, "Tian He");
         this.jsonWriter = new JsonWriter(JSON_LOCATION);
         this.jsonReader = new JsonReader(JSON_LOCATION);
+
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the hotels in Beijing
     private void initBJ() {
         this.bj1 = new Hotel("Ascott Raffles", 251, "Dongzhimen");
         this.bj2 = new Hotel("Grand Hyatt", 334, "Dongcheng");
         this.bj3 = new Hotel("Rosewood", 445, "Chaoyangmen Outer St");
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the hotels in Shanghai
     private void initSH() {
         this.sh1 = new Hotel("Shangri-la", 340, "Pu-dong");
         this.sh2 = new Hotel("Ritz-carlton", 368, "Pu-dong");
         this.sh3 = new Hotel("Grand Kempinski", 176, "Pu-dong");
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the hotels in Tianjin
     private void initTJ() {
         this.tj1 = new Hotel("Ritz-carlton", 225, "Dagubei");
         this.tj2 = new Hotel("Mariott", 100, "Tian Jin Zhi Yan");
         this.tj3 = new Hotel("Crowne Plaza", 110, "Dongli");
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the hotels in Shenzhen
     private void initSZ() {
         this.sz1 = new Hotel("Langham", 203, "Shenan");
         this.sz2 = new Hotel("Hilton", 183, "Fu Tian");
         this.sz3 = new Hotel("Hilton (Sea World)", 183, "Shekou");
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the hotels in Chengdu
     private void initCD() {
         this.cd1 = new Hotel("Mariott", 134, "Chenghua");
         this.cd2 = new Hotel("Hilton", 129, "Ju Wei Jiu");
         this.cd3 = new Hotel("Kempinski", 184, "Wangjiang Pavilion Park");
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the hotels in Chongqing
     private void initCQ() {
         this.cq1 = new Hotel("Niccolo", 216, "Guojin Centre");
         this.cq2 = new Hotel("Crowne Plaza", 116, "Long Hua");
         this.cq3 = new Hotel("Banyan", 358, "Beibei");
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the rest of the hotels
     private void initRest() {
         this.dg1 = new Hotel("Sheraton", 99, "Fukang");
         this.dg2 = new Hotel("Mission Hills", 124, "Lin Pin");
@@ -386,7 +423,7 @@ public class HotelApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the selected hotel to the user's hotel list
+    // EFFECTS: if wallet has sufficient funds, adds the selected hotel to the user's hotel list
     private void doAddGZ(String hotelToAdd) {
         if (hotelToAdd.equals("Langham")) {
             if (w1.getAmount() >= gz1.getPricePerNight()) {
@@ -409,7 +446,7 @@ public class HotelApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the selected hotel to the user's hotel list
+    // EFFECTS: if wallet has sufficient funds, adds the selected hotel to the user's hotel list
     private void doAddBJ(String hotelToAdd) {
         if (hotelToAdd.equals("Ascott Raffles")) {
             if (w1.getAmount() >= bj1.getPricePerNight()) {
@@ -432,7 +469,7 @@ public class HotelApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the selected hotel to the user's hotel list
+    // EFFECTS: if wallet has sufficient funds, adds the selected hotel to the user's hotel list
     private void doAddSH(String hotelToAdd) {
         if (hotelToAdd.equals("Shangri-la")) {
             if (w1.getAmount() >= sh1.getPricePerNight()) {
@@ -455,7 +492,7 @@ public class HotelApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the selected hotel to the user's hotel list
+    // EFFECTS: if wallet has sufficient funds, adds the selected hotel to the user's hotel list
     private void doAddTJ(String hotelToAdd) {
         if (hotelToAdd.equals("Ritz-carlton")) {
             if (w1.getAmount() >= tj1.getPricePerNight()) {
@@ -478,7 +515,7 @@ public class HotelApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the selected hotel to the user's hotel list
+    // EFFECTS: if wallet has sufficient funds, adds the selected hotel to the user's hotel list
     private void doAddSZ(String hotelToAdd) {
         if (hotelToAdd.equals("Langham")) {
             if (w1.getAmount() >= sz1.getPricePerNight()) {
@@ -501,7 +538,7 @@ public class HotelApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the selected hotel to the user's hotel list
+    // EFFECTS: if wallet has sufficient funds, adds the selected hotel to the user's hotel list
     private void doAddCD(String hotelToAdd) {
         if (hotelToAdd.equals("Mariott")) {
             if (w1.getAmount() >= cd1.getPricePerNight()) {
@@ -524,7 +561,7 @@ public class HotelApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the selected hotel to the user's hotel list
+    // EFFECTS: if wallet has sufficient funds, adds the selected hotel to the user's hotel list
     private void doAddCQ(String hotelToAdd) {
         if (hotelToAdd.equals("Niccolo")) {
             if (w1.getAmount() >= cq1.getPricePerNight()) {
@@ -547,7 +584,7 @@ public class HotelApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the selected hotel to the user's hotel list
+    // EFFECTS: if wallet has sufficient funds, adds the selected hotel to the user's hotel list
     private void doAddDG(String hotelToAdd) {
         if (hotelToAdd.equals("Sheraton")) {
             if (w1.getAmount() >= dg1.getPricePerNight()) {
@@ -570,7 +607,7 @@ public class HotelApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the selected hotel to the user's hotel list
+    // EFFECTS: if wallet has sufficient funds, adds the selected hotel to the user's hotel list
     private void doAddSY(String hotelToAdd) {
         if (hotelToAdd.equals("Hilton")) {
             if (w1.getAmount() >= sy1.getPricePerNight()) {
@@ -593,7 +630,7 @@ public class HotelApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the selected hotel to the user's hotel list
+    // EFFECTS: if wallet has sufficient funds, adds the selected hotel to the user's hotel list
     private void doAddWH(String hotelToAdd) {
         if (hotelToAdd.equals("Grand Plaza")) {
             if (w1.getAmount() >= wh1.getPricePerNight()) {
@@ -615,7 +652,22 @@ public class HotelApp {
         }
     }
 
-    // EFFECTS: saves the hotelList to file
+    // MODIFIES: this
+    // EFFECTS: tries to save the wallet as a jsonObject, if unsuccessful, throws file not found exception
+    private void walletSave() {
+        try {
+            jsonWriter.open();
+            jsonWriter.writeWallet(w1);
+            jsonWriter.close();
+            System.out.println("Saved your wallet to " + JSON_LOCATION_WALLET);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_LOCATION_WALLET);
+        }
+    }
+
+
+    // MODIFIES: this
+    // EFFECTS: tries to save the Hotel list as a jsonObject, if unsuccessful, throws file not found exception
     private void saveHotelList() {
         try {
             jsonWriter.open();
@@ -628,7 +680,17 @@ public class HotelApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads Hotel list from file
+    // EFFECTS: tries to load the wallet from the jsonObject, if unsuccessful, throws IOException
+    private void loadWallet() {
+        try {
+            w1 = jsonReader.readWallet();
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_LOCATION_WALLET);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: tries to load the Hotel list from the jsonObject, if unsuccessful, throws IOException
     private void loadHotelList() {
         try {
             hotelList = jsonReader.read();

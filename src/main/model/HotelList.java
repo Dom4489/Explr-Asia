@@ -127,6 +127,8 @@ public class HotelList implements Writable {
         return locations;
     }
 
+    // MODIFIES: this
+    // EFFECTS: converts the Hotel list data to json data
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

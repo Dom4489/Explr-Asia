@@ -1,9 +1,11 @@
 package persistence;
 
 import model.HotelList;
+import model.Wallet;
 import org.json.JSONObject;
 
-
+// this class represents the json writer that writes the chosen data in json format
+import javax.swing.plaf.metal.MetalBorders;
 import java.io.*;
 
 public class JsonWriter {
@@ -27,6 +29,11 @@ public class JsonWriter {
     // EFFECTS: writes JSON representation of hotel list to file
     public void write(HotelList hl) {
         JSONObject json = hl.toJson();
+        saveToFile(json.toString(TAB));
+    }
+
+    public void writeWallet(Wallet w1) {
+        JSONObject json =  w1.toJson();
         saveToFile(json.toString(TAB));
     }
 

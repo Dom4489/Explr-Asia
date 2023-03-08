@@ -29,6 +29,14 @@ public class JsonReader {
         return parseHotelList(jsonObject);
     }
 
+    // EFFECTS: reads wallet from file and returns it,
+    // throws IOException if error occurs while reading file
+    public Wallet readWallet() throws  IOException {
+        String jsonData = readFile(source);
+        JSONObject jsonObject = new JSONObject(jsonData);
+        return parseWallet(jsonObject);
+    }
+
     // EFFECTS: read file as string and stores it
     public String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
@@ -48,8 +56,15 @@ public class JsonReader {
         return hl;
     }
 
+    // EFFECTS: parses Json object for wallet and returns it
+    private Wallet parseWallet(JSONObject jsonObject) {
+        int amount = jsonObject.getInt("amount");
+        Wallet w1 = new Wallet(amount);
+        return w1;
+    }
+
     // MODIFIES: hl
-    // EFFECTS: parses Hotels from JSON object and adds them to HotelList
+    // EFFECTS: parses Hotels from JSON object and adds them to Hotel list
     private void addHotels(HotelList hl, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("hotels");
         for (Object json : jsonArray) {
@@ -58,8 +73,8 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // MODIFIES: hl
+    // EFFECTS: parses thingy from JSON object and adds it to Hotel list
     private void addHotel(HotelList hl, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         int pricePerNight = jsonObject.getInt("price");

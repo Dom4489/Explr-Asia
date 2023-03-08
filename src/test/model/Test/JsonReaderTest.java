@@ -3,12 +3,10 @@ package model.Test;
 import model.Hotel;
 import model.HotelList;
 import model.Wallet;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import persistence.JsonReader;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,6 +47,17 @@ public class JsonReaderTest extends JsonTest {
             assertEquals(2, thingies.size());
             checkHotel("yes", 20, "UBC", thingies.get(0));
             checkHotel("no", 40, "UofT", thingies.get(1));
+        } catch (IOException e) {
+            fail("Couldn't read from file");
+        }
+    }
+
+    @Test
+    public void testReaderGeneralWallet() {
+        JsonReader reader = new JsonReader("./data/testReaderGeneralWallet.json");
+        try {
+            Wallet w1 = reader.readWallet();
+            assertEquals(350, w1.getAmount());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
