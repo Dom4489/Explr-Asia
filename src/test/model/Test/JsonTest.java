@@ -2,9 +2,9 @@ package model.Test;
 
 import model.Hotel;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class JsonTest {
+public abstract class JsonTest {
     protected void checkHotel(String name, int pricePerNight, String location, Hotel hotel) {
         assertEquals(name, hotel.getName());
         assertEquals(pricePerNight, hotel.getPricePerNight());
