@@ -79,6 +79,7 @@ public class HotelApp {
             command = this.input.next();
             command = command.toLowerCase();
             if (command.equals("quit")) {
+                askForSave();
                 keepGoing = false;
             } else {
                 this.processCommand(command);
@@ -86,6 +87,16 @@ public class HotelApp {
         }
 
         System.out.println("\nSee you next time!");
+    }
+
+    private void askForSave() {
+        System.out.println("You are about to exit the application, would you like to save your current list?");
+        System.out.println("Enter \"y\" to save or any other key to exit: ");
+        String save = this.input.next();
+        save = save.toLowerCase();
+        if (save.equals("y")) {
+            this.saveHotelList();
+        }
     }
 
     // MODIFIES: this
@@ -106,6 +117,7 @@ public class HotelApp {
         }
 
     }
+
 
     private void walletOptions() {
         System.out.println("Enter the action you wish to complete:");

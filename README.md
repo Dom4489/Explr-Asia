@@ -64,8 +64,11 @@ that hotel to their list where they can read a writeup about the hotel and acces
 - As a user, I want to be able to delete hotel listings from my list
 - As a user, I want to be able to see how many hotel listings I have in my list
 - As a user, I want to be able to view the locations of the hotels in my list
+- As a user, I want to be able to have a virtual wallet
+- As a user, I want to be able to add funds to my wallet
+- As a user, I want to be able to view how much funds I have in my wallet
+- As a user, I want to be able to spend a certain amount of money to get a random amount of money in return
+- As a user, I want to only be able to add hotels in my list only if I have sufficient funds for at least one night in my wallet
 - As a user, I want to be reminded that I am able to have the option to 
 save my hotel list to a file when exiting the program
 - As a user, I want to be given the option to load my hotel list
-- As a user, I want my wallet to be auto-saved to a file
-- As a user, I want my wallet to be auto-loaded when I start the program after quitting
