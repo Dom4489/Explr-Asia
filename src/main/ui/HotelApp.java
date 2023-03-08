@@ -4,13 +4,20 @@ import model.Hotel;
 import model.HotelList;
 import model.RedPocket;
 import model.Wallet;
+import org.json.JSONArray;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 // This class represents the user interface for the application
 public class HotelApp {
 
     private static final String DEFAULT_LIST_NAME = "Hotel list";
+    private static final String JSON_LOCATION = "./data/hotellist.json";
     private HotelList hotelList;
     private Scanner input;
     private Hotel gz1;
@@ -45,9 +52,11 @@ public class HotelApp {
     private Hotel wh3;
     private Wallet w1;
     private RedPocket rp1;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: constructs runHotel
-    public HotelApp() {
+    public HotelApp() throws FileNotFoundException {
         runHotel();
     }
 
@@ -88,6 +97,10 @@ public class HotelApp {
             this.listOptions();
         } else if (command.equals("wallet")) {
             this.walletOptions();
+        } else if (command.equals("s")) {
+            this.saveHotelList();
+        } else if (command.equals("l")) {
+            this.loadHotelList();
         } else {
             System.out.println("Selection not valid, please try again at a later time");
         }
@@ -171,6 +184,8 @@ public class HotelApp {
         this.gz1 = new Hotel("Langham", 280, "Haizhu");
         this.gz2 = new Hotel("Ritz-carlton", 345, "Tian He");
         this.gz3 = new Hotel("Four Seasons", 378, "Tian He");
+        this.jsonWriter = new JsonWriter(JSON_LOCATION);
+        this.jsonReader = new JsonReader(JSON_LOCATION);
     }
 
     private void initBJ() {
@@ -224,10 +239,12 @@ public class HotelApp {
     // EFFECTS: displays the first set of options presented to the user
     private void displayMenu() {
         System.out.println("\nPlease select from the following:");
-        System.out.println("Hotels");
-        System.out.println("Hotel list");
-        System.out.println("Wallet");
-        System.out.println("quit");
+        System.out.println("\tHotels");
+        System.out.println("\tHotel list");
+        System.out.println("\tWallet");
+        System.out.println("\tS -> save Hotel list to file");
+        System.out.println("\tL -> load Hotel list from file");
+        System.out.println("\tquit");
     }
 
     // MODIFIES: this
@@ -363,25 +380,19 @@ public class HotelApp {
             if (w1.getAmount() >= gz1.getPricePerNight()) {
                 hotelList.addHotelToList(gz1);
                 w1.subAmount(gz1.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Ritz-carlton")) {
             if (w1.getAmount() >= gz2.getPricePerNight()) {
                 hotelList.addHotelToList(gz2);
                 w1.subAmount(gz2.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Four Seasons")) {
             if (w1.getAmount() >= gz3.getPricePerNight()) {
                 hotelList.addHotelToList(gz3);
                 w1.subAmount(gz3.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else {
-            System.out.println("Selection not valid please try again");
+            System.out.println("The previous command did not work: invalid choice or insufficient funds");
         }
     }
 
@@ -392,25 +403,19 @@ public class HotelApp {
             if (w1.getAmount() >= bj1.getPricePerNight()) {
                 hotelList.addHotelToList(bj1);
                 w1.subAmount(bj1.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Grand Hyatt")) {
             if (w1.getAmount() >= bj2.getPricePerNight()) {
                 hotelList.addHotelToList(bj2);
                 w1.subAmount(bj2.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Rosewood")) {
             if (w1.getAmount() >= bj3.getPricePerNight()) {
                 hotelList.addHotelToList(bj3);
                 w1.subAmount(bj3.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else {
-            System.out.println("Selection not valid please try again");
+            System.out.println("The previous command did not work: invalid choice or insufficient funds");
         }
     }
 
@@ -421,25 +426,19 @@ public class HotelApp {
             if (w1.getAmount() >= sh1.getPricePerNight()) {
                 hotelList.addHotelToList(sh1);
                 w1.subAmount(sh1.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Ritz-carlton")) {
             if (w1.getAmount() >= sh2.getPricePerNight()) {
                 hotelList.addHotelToList(sh2);
                 w1.subAmount(sh2.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Grand Kempinski")) {
             if (w1.getAmount() >= sh3.getPricePerNight()) {
                 hotelList.addHotelToList(sh3);
                 w1.subAmount(sh3.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else {
-            System.out.println("Selection not valid please try again");
+            System.out.println("The previous command did not work: invalid choice or insufficient funds");
         }
     }
 
@@ -450,25 +449,19 @@ public class HotelApp {
             if (w1.getAmount() >= tj1.getPricePerNight()) {
                 hotelList.addHotelToList(tj1);
                 w1.subAmount(tj1.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Mariott")) {
             if (w1.getAmount() >= tj2.getPricePerNight()) {
                 hotelList.addHotelToList(tj2);
                 w1.subAmount(tj2.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Crowne Plaza")) {
             if (w1.getAmount() >= tj3.getPricePerNight()) {
                 hotelList.addHotelToList(tj3);
                 w1.subAmount(tj3.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else {
-            System.out.println("Selection not valid please try again");
+            System.out.println("The previous command did not work: invalid choice or insufficient funds");
         }
     }
 
@@ -479,25 +472,19 @@ public class HotelApp {
             if (w1.getAmount() >= sz1.getPricePerNight()) {
                 hotelList.addHotelToList(sz1);
                 w1.subAmount(sz1.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Hilton")) {
             if (w1.getAmount() >= sz2.getPricePerNight()) {
                 hotelList.addHotelToList(sz2);
                 w1.subAmount(sz2.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Hilton (Sea World)")) {
             if (w1.getAmount() >= sz3.getPricePerNight()) {
                 hotelList.addHotelToList(sz3);
                 w1.subAmount(sz3.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else {
-            System.out.println("Selection not valid please try again");
+            System.out.println("The previous command did not work: invalid choice or insufficient funds");
         }
     }
 
@@ -508,25 +495,19 @@ public class HotelApp {
             if (w1.getAmount() >= cd1.getPricePerNight()) {
                 hotelList.addHotelToList(cd1);
                 w1.subAmount(cd1.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Hilton")) {
             if (w1.getAmount() >= cd2.getPricePerNight()) {
                 hotelList.addHotelToList(cd2);
                 w1.subAmount(cd2.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Kempinski")) {
             if (w1.getAmount() >= cd3.getPricePerNight()) {
                 hotelList.addHotelToList(cd3);
                 w1.subAmount(cd3.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else {
-            System.out.println("Selection not valid please try again");
+            System.out.println("The previous command did not work: invalid choice or insufficient funds");
         }
     }
 
@@ -537,25 +518,19 @@ public class HotelApp {
             if (w1.getAmount() >= cq1.getPricePerNight()) {
                 hotelList.addHotelToList(cq1);
                 w1.subAmount(cq1.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Crowne Plaza")) {
             if (w1.getAmount() >= cq2.getPricePerNight()) {
                 hotelList.addHotelToList(cq2);
                 w1.subAmount(cq2.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Banyan")) {
             if (w1.getAmount() >= cq3.getPricePerNight()) {
                 hotelList.addHotelToList(cq3);
                 w1.subAmount(cq3.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else {
-            System.out.println("Selection not valid please try again");
+            System.out.println("The previous command did not work: invalid choice or insufficient funds");
         }
     }
 
@@ -566,25 +541,19 @@ public class HotelApp {
             if (w1.getAmount() >= dg1.getPricePerNight()) {
                 hotelList.addHotelToList(dg1);
                 w1.subAmount(dg1.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Mission Hills")) {
             if (w1.getAmount() >= dg2.getPricePerNight()) {
                 hotelList.addHotelToList(dg2);
                 w1.subAmount(dg2.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Pullman")) {
             if (w1.getAmount() >= dg3.getPricePerNight()) {
                 hotelList.addHotelToList(dg3);
                 w1.subAmount(dg3.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else {
-            System.out.println("Selection not valid please try again");
+            System.out.println("The previous command did not work: invalid choice or insufficient funds");
         }
     }
 
@@ -595,25 +564,19 @@ public class HotelApp {
             if (w1.getAmount() >= sy1.getPricePerNight()) {
                 hotelList.addHotelToList(sy1);
                 w1.subAmount(sy1.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Grand Hyatt")) {
             if (w1.getAmount() >= sy2.getPricePerNight()) {
                 hotelList.addHotelToList(sy2);
                 w1.subAmount(sy2.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Conrad")) {
             if (w1.getAmount() >= sy3.getPricePerNight()) {
                 hotelList.addHotelToList(sy3);
                 w1.subAmount(sy3.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else {
-            System.out.println("Selection not valid please try again");
+            System.out.println("The previous command did not work: invalid choice or insufficient funds");
         }
     }
 
@@ -624,25 +587,42 @@ public class HotelApp {
             if (w1.getAmount() >= wh1.getPricePerNight()) {
                 hotelList.addHotelToList(wh1);
                 w1.subAmount(wh1.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Intercontinental Wuhan")) {
             if (w1.getAmount() >= wh2.getPricePerNight()) {
                 hotelList.addHotelToList(wh2);
                 w1.subAmount(wh2.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else if (hotelToAdd.equals("Fairmont")) {
             if (w1.getAmount() >= wh3.getPricePerNight()) {
                 hotelList.addHotelToList(wh3);
                 w1.subAmount(wh3.getPricePerNight());
-            } else {
-                System.out.println("Insufficient funds please try again later");
             }
         } else {
-            System.out.println("Selection not valid please try again");
+            System.out.println("The previous command did not work: invalid choice or insufficient funds");
+        }
+    }
+
+    // EFFECTS: saves the hotelList to file
+    private void saveHotelList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(hotelList);
+            jsonWriter.close();
+            System.out.println("Saved " + hotelList.getListName() + " to " + JSON_LOCATION);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_LOCATION);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads Hotel list from file
+    private void loadHotelList() {
+        try {
+            hotelList = jsonReader.read();
+            System.out.println("Loaded " + hotelList.getListName() + " from " + JSON_LOCATION);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_LOCATION);
         }
     }
 

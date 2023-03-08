@@ -1,13 +1,17 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import model.Wallet;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
 
 // This class represents the user's hotel list
-public class HotelList {
-    private LinkedList hotelList;
+public class HotelList implements Writable {
+    private LinkedList<Hotel> hotelList;
     public static final int MAX_SIZE = 10; // Maximum size of the list
     public static final String NOT_IN_LIST = "The hotel you entered could not be found within your list";
     public static final String MAX_SIZE_REACHED = "You have added the maximum amount of hotels one list can hold";
@@ -121,6 +125,29 @@ public class HotelList {
             locations.add(hotelLocation);
         }
         return locations;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", listName);
+        json.put("hotels", hotelsToJson());
+        return json;
+    }
+
+    private JSONArray hotelsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Hotel h : hotelList) {
+            jsonArray.put(h.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    // EFFECTS: returns an unmodifiable list of thingies in this workroom
+    public List<Hotel> getHotels() {
+        return Collections.unmodifiableList(hotelList);
     }
 }
 

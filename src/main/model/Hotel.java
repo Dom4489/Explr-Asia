@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // This class represents each hotel listing
-public class Hotel {
+public class Hotel implements Writable {
 
     private String name; // Name of the hotel
     private int price; // Price of the hotel in CAD
@@ -29,5 +32,14 @@ public class Hotel {
 
     public String getLocation() {
         return location;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("price", price);
+        json.put("location", location);
+        return json;
     }
 }
