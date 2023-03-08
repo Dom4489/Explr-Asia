@@ -60,6 +60,8 @@ public class HotelApp {
     private RedPocket rp1;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+    private JsonWriter jsonWriter2;
+    private JsonReader jsonReader2;
 
     // EFFECTS: constructs runHotel
     public HotelApp() throws FileNotFoundException {
@@ -220,6 +222,8 @@ public class HotelApp {
         this.gz3 = new Hotel("Four Seasons", 378, "Tian He");
         this.jsonWriter = new JsonWriter(JSON_LOCATION);
         this.jsonReader = new JsonReader(JSON_LOCATION);
+        this.jsonWriter2 = new JsonWriter(JSON_LOCATION_WALLET);
+        this.jsonReader2 = new JsonReader(JSON_LOCATION_WALLET);
 
     }
 
@@ -656,9 +660,9 @@ public class HotelApp {
     // EFFECTS: tries to save the wallet as a jsonObject, if unsuccessful, throws file not found exception
     private void walletSave() {
         try {
-            jsonWriter.open();
-            jsonWriter.writeWallet(w1);
-            jsonWriter.close();
+            jsonWriter2.open();
+            jsonWriter2.writeWallet(w1);
+            jsonWriter2.close();
             System.out.println("Saved your wallet to " + JSON_LOCATION_WALLET);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_LOCATION_WALLET);
@@ -683,7 +687,7 @@ public class HotelApp {
     // EFFECTS: tries to load the wallet from the jsonObject, if unsuccessful, throws IOException
     private void loadWallet() {
         try {
-            w1 = jsonReader.readWallet();
+            w1 = jsonReader2.readWallet();
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_LOCATION_WALLET);
         }
