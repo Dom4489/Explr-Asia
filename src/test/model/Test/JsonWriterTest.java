@@ -29,7 +29,7 @@ public class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    public void testWriterEmptyWorkroom() {
+    public void testWriterEmptyHotelList() {
         try {
             HotelList hl = new HotelList("My hotel list");
             JsonWriter writer = new JsonWriter("./data/testReaderEmptyHotelList.json");
@@ -47,7 +47,7 @@ public class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    public void testWriterGeneralWorkroom() {
+    public void testWriterGeneralHotelList() {
         try {
             HotelList hl = new HotelList("My hotel list");
             hl.addHotelToList(new Hotel("yes", 20, "UBC"));
@@ -65,6 +65,25 @@ public class JsonWriterTest extends JsonTest {
             checkHotel("yes", 20, "UBC", thingies.get(0));
             checkHotel("no", 40, "UofT", thingies.get(1));
 
+        } catch (IOException e) {
+            fail("Exception should not have been thrown");
+        }
+    }
+
+    @Test
+    public void testWriterGeneralWallet() {
+        try {
+            Wallet w1 = new Wallet(150);
+            w1.addAmount(100);
+            w1.addAmount(100);
+            JsonWriter writer = new JsonWriter("./data/testReaderGeneralWallet.json");
+            writer.open();
+            writer.writeWallet(w1);
+            writer.close();
+
+            JsonReader reader = new JsonReader("./data/testReaderGeneralWallet.json");
+            w1 = reader.readWallet();
+            assertEquals(350, w1.getAmount());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }

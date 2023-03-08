@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // this class represents the user's virtual wallet
-public class Wallet {
+public class Wallet implements Writable {
 
     private int amount;
 
@@ -34,5 +37,14 @@ public class Wallet {
         } else  {
             amount -= sub;
         }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: converts the wallet data to json data
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("amount", amount);
+        return json;
     }
 }

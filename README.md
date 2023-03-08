@@ -72,3 +72,13 @@ that hotel to their list where they can read a writeup about the hotel and acces
 - As a user, I want to be reminded that I am able to have the option to 
 save my hotel list to a file when exiting the program
 - As a user, I want to be given the option to load my hotel list
+- As a user, I want my wallet to be auto-saved
+- As a user, I want my wallet to be auto-loaded 
+
+#
+
+## **Citations**
+- Description: Java code on data persistence 
+- Author: Paul Carter 
+- Date accessed: Mar 8, 2023
+- URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/tree/master/src/main/persistence
