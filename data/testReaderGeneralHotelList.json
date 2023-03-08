@@ -1,0 +1,15 @@
+{
+    "hotels": [
+        {
+            "price": 20,
+            "name": "yes",
+            "location": "UBC"
+        },
+        {
+            "price": 40,
+            "name": "no",
+            "location": "UofT"
+        }
+    ],
+    "name": "My hotel list"
+}

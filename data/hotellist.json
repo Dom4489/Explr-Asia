@@ -1,0 +1,15 @@
+{
+    "hotels": [
+        {
+            "price": 280,
+            "name": "Langham",
+            "location": "Haizhu"
+        },
+        {
+            "price": 251,
+            "name": "Ascott Raffles",
+            "location": "Dongzhimen"
+        }
+    ],
+    "name": "Hotel list"
+}
