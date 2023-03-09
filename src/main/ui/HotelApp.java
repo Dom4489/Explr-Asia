@@ -4,13 +4,11 @@ import model.Hotel;
 import model.HotelList;
 import model.RedPocket;
 import model.Wallet;
-import org.json.JSONArray;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 // This class represents the user interface for the application
@@ -20,7 +18,6 @@ import java.util.Scanner;
 // Date accessed: Feb 24, 2023
 // URL: https://github.students.cs.ubc.ca/CPSC210/TellerApp/blob/main/src/main/ca/ubc/cpsc210/bank/ui/TellerApp.java
 public class HotelApp {
-
     private static final String DEFAULT_LIST_NAME = "Hotel list";
     private static final String JSON_LOCATION = "./data/hotellist.json";
     private static final String JSON_LOCATION_WALLET = "./data/wallet.json";
@@ -91,7 +88,7 @@ public class HotelApp {
                 askForSave();
                 keepGoing = false;
             } else {
-                this.processCommand(command);
+                this.processFirstCommand(command);
             }
         }
 
@@ -113,7 +110,7 @@ public class HotelApp {
 
     // MODIFIES: this
     // EFFECTS: processes the first command given by the user
-    private void processCommand(String command) {
+    private void processFirstCommand(String command) {
         if (command.equals("hotels")) {
             this.listDestinations();
         } else if (command.equals("hotel list")) {
@@ -177,12 +174,12 @@ public class HotelApp {
         System.out.println("Enter: either \"Yes\" to continue or \"No\" to return");
         String selection = input.next();
         selection = selection.toLowerCase();
-        gamble(selection);
+        cashOutRedPocket(selection);
     }
 
     // MODIFIES: this
     // EFFECTS: deducts 50 CAD from wallet and adds a random amount between 0 - 300 CAD
-    private void gamble(String selection) {
+    private void cashOutRedPocket(String selection) {
         if (selection.equals("yes") && w1.getAmount() >= 50) {
             w1.subAmount(50);
             rp1 = new RedPocket(1);
@@ -224,6 +221,7 @@ public class HotelApp {
         this.jsonReader = new JsonReader(JSON_LOCATION);
         this.jsonWriter2 = new JsonWriter(JSON_LOCATION_WALLET);
         this.jsonReader2 = new JsonReader(JSON_LOCATION_WALLET);
+
 
     }
 
@@ -705,3 +703,5 @@ public class HotelApp {
     }
 
 }
+
+
