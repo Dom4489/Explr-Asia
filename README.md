@@ -50,7 +50,7 @@ greeted with various researched and reviewed hotel
 recommendations. In addition to this, consumers also 
 have the ability to sort their generated results based 
 on both price and location. Moreover, once a hotel has 
-caught the interest of an user, they will be able to add 
+caught the interest of a user, they will be able to add 
 that hotel to their list where they can read a writeup about the hotel and access the hotel’s official website.
 
 #
