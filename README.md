@@ -77,6 +77,23 @@ save my hotel list to a file when exiting the program
 
 #
 
+### Instructions for Grader
+- You can generate the first required action related to adding Xs to a Y by adding a hotel to your hotel list.
+This is done by typing the name of a city in  the search bar, then clicking the search button. Then
+click the button with the name of the hotel you wish to add. You can view the addition by returning to 
+the menu and clicking the hotel list button. Once there, click the view list button.
+- You can generate the second required action related to adding Xs to a Y by removing a hotel from your hotel list.
+  This is done by clicking the hotel list button from the menu. Once there, click the remove button.
+Then, type the name of the hotel you wish to remove and click ok. You can see the removal by 
+navigating back to hotel list button. Once there, click the view list button.
+- You can locate my visual component by returning to the main menu, it is the background image.
+- You can save the state of my application by clicking the save button from the menu. When prompted, 
+select yes.
+- You can reload the state of my application by clicking the load button from the menu. When prompted,
+select yes.
+
+#
+
 ## **Citations**
 - Description: Java code on data persistence 
 - Author: Paul Carter 

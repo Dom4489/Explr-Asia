@@ -2,7 +2,7 @@ package ui;
 
 import java.io.FileNotFoundException;
 
-// this class runs the program
+// this class runs the user interface program
 public class Main {
     public static void main(String[] args) {
         try {
