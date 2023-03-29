@@ -79,7 +79,10 @@ save my hotel list to a file when exiting the program
 
 ### Instructions for Grader
 - You can generate the first required action related to adding Xs to a Y by adding a hotel to your hotel list.
-This is done by typing the name of a city in  the search bar, then clicking the search button. Then
+If you are first accessing the application, navigate to the wallet
+button. Once there click the view funds button and ensure at least 500 CAD is
+in your wallet. You are now ready to complete the first required action.
+This is done by typing the name of a city in the search bar, then clicking the search button. Then
 click the button with the name of the hotel you wish to add. You can view the addition by returning to 
 the menu and clicking the hotel list button. Once there, click the view list button.
 - You can generate the second required action related to adding Xs to a Y by removing a hotel from your hotel list.

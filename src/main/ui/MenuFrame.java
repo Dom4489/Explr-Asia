@@ -197,7 +197,7 @@ public class MenuFrame extends JFrame implements ActionListener {
         this.hotelList = new HotelList(DEFAULT_LIST_NAME);
         this.input = new Scanner(System.in);
         this.input.useDelimiter("\n");
-        this.w1 = new Wallet(150);
+        this.w1 = new Wallet(500);
         this.gz1 = new Hotel("Langham", 280, "Haizhu");
         this.gz2 = new Hotel("Ritz-carlton", 345, "Tian He");
         this.gz3 = new Hotel("Four Seasons", 378, "Tian He");
@@ -448,7 +448,7 @@ public class MenuFrame extends JFrame implements ActionListener {
                 w1.subAmount(gz3.getPricePerNight());
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Hotel was not added",
+            JOptionPane.showMessageDialog(null, "Hotel was not added, insufficient funds",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -486,7 +486,7 @@ public class MenuFrame extends JFrame implements ActionListener {
                 w1.subAmount(bj3.getPricePerNight());
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Hotel was not added",
+            JOptionPane.showMessageDialog(null, "Hotel was not added, insufficient funds",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -524,7 +524,7 @@ public class MenuFrame extends JFrame implements ActionListener {
                 w1.subAmount(sh3.getPricePerNight());
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Hotel was not added",
+            JOptionPane.showMessageDialog(null, "Hotel was not added, insufficient funds",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -562,7 +562,7 @@ public class MenuFrame extends JFrame implements ActionListener {
                 w1.subAmount(tj3.getPricePerNight());
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Hotel was not added",
+            JOptionPane.showMessageDialog(null, "Hotel was not added, insufficient funds",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -600,7 +600,7 @@ public class MenuFrame extends JFrame implements ActionListener {
                 w1.subAmount(sz3.getPricePerNight());
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Hotel was not added",
+            JOptionPane.showMessageDialog(null, "Hotel was not added, insufficient funds",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -638,7 +638,7 @@ public class MenuFrame extends JFrame implements ActionListener {
                 w1.subAmount(cd3.getPricePerNight());
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Hotel was not added",
+            JOptionPane.showMessageDialog(null, "Hotel was not added, insufficient funds",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -676,7 +676,7 @@ public class MenuFrame extends JFrame implements ActionListener {
                 w1.subAmount(cq3.getPricePerNight());
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Hotel was not added",
+            JOptionPane.showMessageDialog(null, "Hotel was not added, insufficient funds",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -714,7 +714,7 @@ public class MenuFrame extends JFrame implements ActionListener {
                 w1.subAmount(dg3.getPricePerNight());
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Hotel was not added",
+            JOptionPane.showMessageDialog(null, "Hotel was not added, insufficient funds",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -752,7 +752,7 @@ public class MenuFrame extends JFrame implements ActionListener {
                 w1.subAmount(sy3.getPricePerNight());
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Hotel was not added",
+            JOptionPane.showMessageDialog(null, "Hotel was not added, insufficient funds",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -790,7 +790,7 @@ public class MenuFrame extends JFrame implements ActionListener {
                 w1.subAmount(wh3.getPricePerNight());
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Hotel was not added",
+            JOptionPane.showMessageDialog(null, "Hotel was not added, insufficient funds",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
