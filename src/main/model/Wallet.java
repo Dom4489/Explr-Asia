@@ -25,6 +25,8 @@ public class Wallet implements Writable {
     // EFFECTS: adds the specified amount to the funds in the wallet
     public void addAmount(int add) {
         amount += add;
+        EventLog.getInstance().logEvent(new Event("User added: " + add
+                + " to their wallet"));;
     }
 
     // REQUIRES: sub must be a non-negative integer
@@ -34,6 +36,8 @@ public class Wallet implements Writable {
     public void subAmount(int sub) {
         if (sub > amount) {
             amount = 0;
+            EventLog.getInstance().logEvent(new Event("User removed: " + sub
+                    + " from their wallet"));
         } else  {
             amount -= sub;
         }

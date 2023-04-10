@@ -32,9 +32,13 @@ public class HotelList implements Writable {
         if (hotelList.size() < MAX_SIZE) {
             hotelList.add(hotel);
             System.out.println("Success");
+            EventLog.getInstance().logEvent(new Event("User added: " + hotel.getName()
+                    + " to their list: " + listName));
             return true;
         } else {
             System.out.println(MAX_SIZE_REACHED);
+            EventLog.getInstance().logEvent(new Event("User tried to add: " + hotel.getName()
+                    + " from their list: " + listName + " but list was full"));
             return false;
         }
     }
@@ -48,9 +52,13 @@ public class HotelList implements Writable {
             if (obj.getName().equals(name)) {
                 hotelList.remove(i);
                 System.out.println("success");
+                EventLog.getInstance().logEvent(new Event("User removed: " + obj.getName()
+                        + " from their list: " + listName));
                 return obj.getName();
             }
         }
+        EventLog.getInstance().logEvent(new Event("User tried to remove: " + name
+                + " from their list: " + listName + " but it was not in their list"));
         return NOT_IN_LIST;
     }
 
@@ -66,6 +74,7 @@ public class HotelList implements Writable {
     public String setListName(String newName) {
         this.listName = newName;
         System.out.println("success");
+        EventLog.getInstance().logEvent(new Event("User's hotel list name has been set to: " + listName));
         return listName;
     }
 

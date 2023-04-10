@@ -1,9 +1,7 @@
 package ui;
 
-import model.Hotel;
-import model.HotelList;
-import model.RedPocket;
-import model.Wallet;
+import model.*;
+import model.Event;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -11,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Locale;
@@ -84,7 +84,13 @@ public class MenuFrame extends JFrame implements ActionListener {
         setPreferredSize(new Dimension(X_DIMENSION, Y_DIMENSION));
         setLayout(null);
         setTitle(TITLE_NAME); // sets the title of the frame
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the application
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                printlog();
+                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            }
+        });
         setResizable(false); // sets a fixed window size
         setSize(X_DIMENSION, Y_DIMENSION); // sets x and y dimension
         getContentPane().setBackground(BACKGROUND);
@@ -867,6 +873,15 @@ public class MenuFrame extends JFrame implements ActionListener {
             System.out.println("Unable to read from file: " + JSON_LOCATION_WALLET);
         }
     }
+
+    private void printlog() {
+        EventLog el = EventLog.getInstance();
+        for (Event next : el) {
+            System.out.println(next);
+            System.out.println("\n");
+        }
+    }
+
 
 }
 

@@ -1,15 +1,55 @@
 {
     "hotels": [
         {
-            "price": 340,
-            "name": "Shangri-la",
-            "location": "Pu-dong"
+            "price": 251,
+            "name": "Ascott Raffles",
+            "location": "Dongzhimen"
+        },
+        {
+            "price": 334,
+            "name": "Grand Hyatt",
+            "location": "Dongcheng"
+        },
+        {
+            "price": 445,
+            "name": "Rosewood",
+            "location": "Chaoyangmen Outer St"
+        },
+        {
+            "price": 378,
+            "name": "Four Seasons",
+            "location": "Tian He"
         },
         {
             "price": 340,
             "name": "Shangri-la",
             "location": "Pu-dong"
+        },
+        {
+            "price": 368,
+            "name": "Ritz-carlton",
+            "location": "Pu-dong"
+        },
+        {
+            "price": 176,
+            "name": "Grand Kempinski",
+            "location": "Pu-dong"
+        },
+        {
+            "price": 134,
+            "name": "Mariott",
+            "location": "Chenghua"
+        },
+        {
+            "price": 129,
+            "name": "Hilton",
+            "location": "Ju Wei Jiu"
+        },
+        {
+            "price": 184,
+            "name": "Kempinski",
+            "location": "Wangjiang Pavilion Park"
         }
     ],
-    "name": "Hotel list"
+    "name": "dom"
 }

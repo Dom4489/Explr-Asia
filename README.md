@@ -97,6 +97,64 @@ select yes.
 
 #
 
+### Phase 4: Task 2
+Sun Apr 09 18:39:30 PDT 2023
+  User added: 100000 to their wallet
+
+Sun Apr 09 18:39:37 PDT 2023
+User added: Ascott Raffles to their list: Hotel list
+
+Sun Apr 09 18:39:39 PDT 2023
+User added: Grand Hyatt to their list: Hotel list
+
+Sun Apr 09 18:39:41 PDT 2023
+User added: Rosewood to their list: Hotel list
+
+Sun Apr 09 18:39:46 PDT 2023
+User added: Four Seasons to their list: Hotel list
+
+Sun Apr 09 18:39:48 PDT 2023
+User added: Ritz-carlton to their list: Hotel list
+
+Sun Apr 09 18:39:49 PDT 2023
+User added: Langham to their list: Hotel list
+
+Sun Apr 09 18:39:54 PDT 2023
+User's hotel list name has been set to: dom
+
+Sun Apr 09 18:40:11 PDT 2023
+User removed: Langham from their list: dom
+
+Sun Apr 09 18:40:23 PDT 2023
+User tried to remove: Ritz-Carlton from their list: dom but it was not in their list
+
+Sun Apr 09 18:40:35 PDT 2023
+User removed: Ritz-carlton from their list: dom
+
+Sun Apr 09 18:40:43 PDT 2023
+User added: Shangri-la to their list: dom
+
+Sun Apr 09 18:40:44 PDT 2023
+User added: Ritz-carlton to their list: dom
+
+Sun Apr 09 18:40:45 PDT 2023
+User added: Grand Kempinski to their list: dom
+
+Sun Apr 09 18:40:53 PDT 2023
+User added: Mariott to their list: dom
+
+Sun Apr 09 18:40:55 PDT 2023
+User added: Hilton to their list: dom
+
+Sun Apr 09 18:40:56 PDT 2023
+User added: Kempinski to their list: dom
+
+Sun Apr 09 18:41:07 PDT 2023
+User tried to add: Mission Hills from their list: dom but list was full
+
+Process finished with exit code 0
+
+
 ## **Citations**
 - Description: Java code on data persistence 
 - Author: Paul Carter 
