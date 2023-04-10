@@ -154,6 +154,12 @@ User tried to add: Mission Hills from their list: dom but list was full
 
 Process finished with exit code 0
 
+#
+
+### Phase 4: Task 3
+- 	With time, any project could be improved, updated, and perfected. It is for this reason that if I were provided with more time to improve my personal project, I would utilize refactoring to further revamp the coupling in my application. Specifically, I would make changes to the graphical user interface-based code in which hotels are added to the user’s hotel list. In the application’s current state, the code that dictates showing the user hotel options as well as the software that handles the user’s choice contain multiple instances of duplicated code. In order to better the application, I would utilize abstraction to transform the duplicate code into methods which would assist in removing code clones. Specifically, implementing an abstract or interface-based class would undoubtedly allow for easier code maintenance and flexibility in the implementation of future features. In addition to this, the refactoring of my code would also ease the process of resuing my code. As an illustration, if I were tasked with engineering an application similar to this one, the improved abstraction would lend itself over as I would be free of having to recreate the same code for similar methods and tasks. In conclusion, refactoring of my code is an important technique that would assist me to write better code that is easier to maintain and manage over the course of my journey into software design.
+
+#
 
 ## **Citations**
 - Description: Java code on data persistence 
