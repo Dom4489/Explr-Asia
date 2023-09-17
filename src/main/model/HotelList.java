@@ -31,7 +31,6 @@ public class HotelList implements Writable {
     public Boolean addHotelToList(Hotel hotel) {
         if (hotelList.size() < MAX_SIZE) {
             hotelList.add(hotel);
-            System.out.println("Success");
             EventLog.getInstance().logEvent(new Event("User added: " + hotel.getName()
                     + " to their list: " + listName));
             return true;
@@ -51,7 +50,6 @@ public class HotelList implements Writable {
             Hotel obj = (Hotel) hotelList.get(i);
             if (obj.getName().equals(name)) {
                 hotelList.remove(i);
-                System.out.println("success");
                 EventLog.getInstance().logEvent(new Event("User removed: " + obj.getName()
                         + " from their list: " + listName));
                 return obj.getName();
@@ -73,7 +71,6 @@ public class HotelList implements Writable {
     //EFFECTS: changes the name of the list
     public String setListName(String newName) {
         this.listName = newName;
-        System.out.println("success");
         EventLog.getInstance().logEvent(new Event("User's hotel list name has been set to: " + listName));
         return listName;
     }
