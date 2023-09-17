@@ -35,7 +35,7 @@ public class Hotel implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: converts the hotel data to json data
+    // EFFECTS: converts the hotel data to json data.
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
